@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Initialize the release notes file
 echo "# Release Notes" > release-notes.md
 echo "## Changes since $PREV" >> release-notes.md
