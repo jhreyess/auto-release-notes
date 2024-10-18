@@ -1,9 +1,10 @@
 name: Automate Release Notes
 description: 'Generates release notes based on commit messages since the last tag'
 inputs:
-  default-branch: 'default branch or tag to compare'
-  required: false
-  default: 'origin/main'
+  default-branch: 
+    description: 'default branch or tag to compare'
+    required: false
+    default: 'origin/main'
 runs:
   using: "composite"
   steps:
