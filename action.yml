@@ -13,9 +13,13 @@ runs:
       shell: bash
       env:
         LAST_TAG: ${{ github.ref_name }}
+    
+    - name: List files
+      run: ls -al
+      shell: bash
 
     - name: Generate Release Notes
-      run: generate-notes.sh
+      run: ./generate-notes.sh
       shell: bash
       env:
         LAST_TAG: ${{ github.ref_name }}
