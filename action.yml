@@ -3,7 +3,7 @@ description: 'Generates release notes based on commit messages since the last ta
 inputs:
   default-branch: 'default branch or tag to compare'
   required: false
-  default: origin/main
+  default: 'origin/main'
 runs:
   using: "composite"
   steps:
