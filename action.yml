@@ -1,0 +1,24 @@
+name: Automate Release Notes
+description: 'Generates release notes based on commit messages since the last tag'
+inputs:
+  default-branch: 'default branch or tag to compare'
+  required: false
+  default: origin/main
+runs:
+  using: "composite"
+  steps:
+    - name: Get Previous tag
+      run: echo "PREV=$(git describe --abbrev=0 --tags $TAG^)" >> $GITHUB_ENV
+      shell: bash
+
+    - name: Generate Release Notes
+      run: |
+        echo "Fetch commits between tags: $PREV..$LAST_TAG"
+        git log --pretty=format:"%s" $PREV..$LAST_TAG --no-merges > release-notes.md
+      shell: bash
+      env:
+        LAST_TAG: ${{ github.ref_name }}
+
+    - name: Output release notes
+      run: cat release-notes.md
+      shell: bash
