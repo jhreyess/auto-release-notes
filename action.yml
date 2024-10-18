@@ -9,8 +9,10 @@ runs:
   using: "composite"
   steps:
     - name: Get Previous tag
-      run: echo "PREV=$(git describe --abbrev=0 --tags $TAG^)" >> $GITHUB_ENV
+      run: echo "PREV=$(git describe --abbrev=0 --tags $LAST_TAG^)" >> $GITHUB_ENV
       shell: bash
+      env:
+        LAST_TAG: ${{ github.ref_name }}
 
     - name: Generate Release Notes
       run: |
